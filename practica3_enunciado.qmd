@@ -35,7 +35,23 @@ Organiza el conjunto de datos en una matriz, donde cada fila corresponda a un pr
 
 #### Respuesta
 
+`
+```{r}
+dades=read_csv("datos_empresa.csv")
+canvi_factors <- c("Marca A" = 1, "Marca B" = 2, "Marca C" = 3)
 
+# Convert the factor to numeric by applying the mapping
+df <- dades %>%
+  mutate(across(5, ~ canvi_factors[.]), .keep = "all")%>%
+  select(2:5)
+matriu=as.matrix(dades %>% select(2:5))
+matriu
+
+pairs(df, col=c("red","green","blue")[df$Marca],pch=18)
+
+
+
+```
 
 ### Apartado 2
 
