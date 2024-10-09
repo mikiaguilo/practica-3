@@ -11,7 +11,7 @@ Rendering:
     embed-resources: true
 ---
 
-**Nombre y Apellido**:
+**Miquel Àngel Aguiló González**:
 
 **Enlace al repositorio de Githhub**:
 
