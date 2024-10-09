@@ -11,9 +11,9 @@ Rendering:
     embed-resources: true
 ---
 
-**Miquel Àngel Aguiló González**:
+**Joan Camps Tomàs,Gerard Ribas Acebes, Miquel Àngel Aguiló González**:
 
-**Enlace al repositorio de Githhub**:
+**https://github.com/mikiaguilo/practica-3.git**:
 
 
 
