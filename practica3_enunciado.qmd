@@ -24,6 +24,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ```{r, echo=FALSE, eval=FALSE}
 library(tidyverse) #Poned aquí todas las librerías que utilicéis
+library(GGally)
 ```
 
 ## Enunciado y datos
@@ -48,6 +49,7 @@ matriu=as.matrix(dades %>% select(2:5))
 matriu
 
 pairs(df, col=c("red","green","blue")[df$Marca],pch=18)
+ggpairs(dades %>% select(-1))
 
 
 
@@ -58,6 +60,9 @@ pairs(df, col=c("red","green","blue")[df$Marca],pch=18)
 Calcula la matriz de datos centrada y el vector de medias con las formas matriciales estudiada en clase de teoría. Interpreta el vector de medias en el contexto del problema.
 
 #### Respuesta
+```{r}
+
+```
 
 
 
