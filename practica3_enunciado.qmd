@@ -1,0 +1,83 @@
+---
+title: "Ejercicios de estadística descriptiva multivariante"
+subtitle: "20582- Análisis de Datos para el GMAT"
+date: today
+format:
+  html:
+    theme: lumen
+    toc: true
+    toc-depth: 3
+Rendering:
+    embed-resources: true
+---
+
+**Nombre y Apellido**:
+
+**Enlace al repositorio de Githhub**:
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+library(tidyverse) #Poned aquí todas las librerías que utilicéis
+```
+
+## Enunciado y datos
+
+Una empresa quiere analizar si existe relación entre las ventas de sus productos, la inversión en publicidad y la satisfacción del cliente. Los datos que corresponden a las ventas han sido registrados en miles de unidades, el gasto en publicidad en miles de euros y la puntuación de satisfacción del cliente en una escala de 1 a 10 para 30 productos, los puedes descargar en el siguiente enlace:  [datos empresa](https://github.com/igmuib/Practica_AD/blob/main/datos_empresa.csv)
+
+### Apartado 1
+Organiza el conjunto de datos en una matriz, donde cada fila corresponda a un producto y cada columna a una variable, siendo la variable "Producto" únicamente un identificador. A continuación, presenta la matriz de dispersión entre las variables, utilizando puntos coloreados según el tipo de marca (consulta la sección 2.4.2 de los apuntes). Comenta los resultados obtenidos, prestando especial atención a lo que indican los valores de las correlaciones entre las variables.
+
+#### Respuesta
+
+
+
+### Apartado 2
+
+Calcula la matriz de datos centrada y el vector de medias con las formas matriciales estudiada en clase de teoría. Interpreta el vector de medias en el contexto del problema.
+
+#### Respuesta
+
+
+
+### Apartado 3
+
+Calcula la matriz de covarianzas y la matriz de correlaciones utilizando las formas matriciales vistas en la clase de teoría. A continuación, interpreta los resultados obtenidos para ambas matrices en el contexto del problema.
+
+#### Respuesta
+
+
+
+### Apartado 4
+
+Calcula la matriz de correlaciones muestrales con la forma matricial estudiada en clase de teoría y revisa que lo has hecho bien con la función disponible de `R`. Interpreta los resultados obtenidos. 
+
+#### Respuesta
+
+
+### Apartado 5
+
+Calcula la varianza generalizada y la variación total del conjunto de datos numéricos que estamos estudiando. Interpreta los resultados obtenidos.
+
+#### Respuesta
+
+
+
+### Apartado 6
+Calcula los vectores de medias y las matrices de correlacioes muestrales para cada marca de productos utilizando  las funciones que están disponibles en `R` y `tidyverse`. Comenta los resultados obtenidos.
+
+#### Respuesta
+
+
+
+### Apartado 7
+
+Utiliza la librería `ggcorrplot` para visualizar las matrices de correlaciones para cada marca de productos mediante mapas de calor que muestren solo las matrices triangulares inferiores. Para la marca A presenta los resultados con  `method = "square"`, para las marca B con  `method = "circle"` y, para la marca C con  `method = "circle"` pero especificando tres cifras decimales. Comenta los resultados obtenidos e indica cuál de los métodos te parece más apropiado para interpretar estos datos.
+
+#### Respuesta
+
