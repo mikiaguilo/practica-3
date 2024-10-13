@@ -93,7 +93,7 @@ Calcula la varianza generalizada y la variación total del conjunto de datos num
 Calcula los vectores de medias y las matrices de correlacioes muestrales para cada marca de productos utilizando  las funciones que están disponibles en `R` y `tidyverse`. Comenta los resultados obtenidos.
 
 #### Respuesta
-
+e
 
 
 ### Apartado 7
