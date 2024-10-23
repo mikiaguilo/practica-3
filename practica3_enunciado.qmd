@@ -22,7 +22,7 @@ Rendering:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE}
 library(tidyverse) #Poned aquí todas las librerías que utilicéis
 library(GGally)
 ```
@@ -47,11 +47,10 @@ df <- dades %>%
   select(2:5)
 matriu=as.matrix(dades %>% select(2:5))
 matriu
+df
 
 pairs(df, col=c("red","green","blue")[df$Marca],pch=18)
 ggpairs(dades %>% select(-1))
-
-
 
 ```
 
@@ -60,7 +59,10 @@ ggpairs(dades %>% select(-1))
 Calcula la matriz de datos centrada y el vector de medias con las formas matriciales estudiada en clase de teoría. Interpreta el vector de medias en el contexto del problema.
 
 #### Respuesta
+Ara calcularem la matriu centrada (restant la mitjana de cada columna a cada element d'aquesta) i el vector de mitjanes, que és un vector amb la motjana de cada columna.
 ```{r}
+matriu_centrada <- df %>% mutate(across(everything(),~. -mean(.)))%>% as.matrix()
+vector_centrado <- colMeans(df)
 
 ```
 
