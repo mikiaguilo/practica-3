@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-10-23">
+<meta name="dcterms.date" content="2024-10-24">
 
 <title>Ejercicios de estadística descriptiva multivariante</title>
 <style>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 23, 2024</p>
+      <p class="date">October 24, 2024</p>
     </div>
   </div>
   
@@ -175,7 +175,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [29,] "205"  "41"       "9.2"                "Marca B"
 [30,] "165"  "33"       "8.6"                "Marca C"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(df, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"green"</span>,<span class="st">"blue"</span>)[df<span class="sc">$</span>Marca],<span class="at">pch=</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 4
+   Ventas Publicidad Satisfaccion_cliente Marca
+    &lt;dbl&gt;      &lt;dbl&gt;                &lt;dbl&gt; &lt;dbl&gt;
+ 1    150         30                  8.2     1
+ 2    200         40                  9.1     2
+ 3    180         35                  8.7     3
+ 4    120         25                  7.5     1
+ 5    170         32                  8       2
+ 6    140         28                  7.9     3
+ 7    160         30                  8.5     1
+ 8    210         42                  9.3     2
+ 9    130         27                  7.8     3
+10    155         30                  8.1     1
+# ℹ 20 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(df, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"green"</span>,<span class="st">"blue"</span>)[df<span class="sc">$</span>Marca],<span class="at">pch=</span><span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -183,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dades <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dades <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -199,6 +216,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Calcula la matriz de datos centrada y el vector de medias con las formas matriciales estudiada en clase de teoría. Interpreta el vector de medias en el contexto del problema.</p>
 <section id="respuesta-1" class="level4">
 <h4 class="anchored" data-anchor-id="respuesta-1">Respuesta</h4>
+<p>Ara calcularem la matriu centrada (restant la mitjana de cada columna a cada element d’aquesta) i el vector de mitjanes, que és un vector amb la motjana de cada columna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>matriu_centrada <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(),<span class="sc">~</span>. <span class="sc">-</span><span class="fu">mean</span>(.)))<span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>vector_centrado <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(df)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>matriu_centrada</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Ventas Publicidad Satisfaccion_cliente Marca
+ [1,]    -14 -2.3333333           -0.1466667    -1
+ [2,]     36  7.6666667            0.7533333     0
+ [3,]     16  2.6666667            0.3533333     1
+ [4,]    -44 -7.3333333           -0.8466667    -1
+ [5,]      6 -0.3333333           -0.3466667     0
+ [6,]    -24 -4.3333333           -0.4466667     1
+ [7,]     -4 -2.3333333            0.1533333    -1
+ [8,]     46  9.6666667            0.9533333     0
+ [9,]    -34 -5.3333333           -0.5466667     1
+[10,]     -9 -2.3333333           -0.2466667    -1
+[11,]    -19 -4.3333333           -0.7466667     0
+[12,]     31  5.6666667            0.6533333     1
+[13,]    -29 -6.3333333           -0.6466667    -1
+[14,]     41  8.6666667            0.8533333     0
+[15,]      1  0.6666667            0.2533333     1
+[16,]    -14 -2.3333333           -0.1466667    -1
+[17,]     36  7.6666667            0.7533333     0
+[18,]     16  2.6666667            0.3533333     1
+[19,]    -44 -7.3333333           -0.8466667    -1
+[20,]      6 -0.3333333           -0.3466667     0
+[21,]    -24 -4.3333333           -0.4466667     1
+[22,]     -4 -2.3333333            0.1533333    -1
+[23,]     46  9.6666667            0.9533333     0
+[24,]    -34 -5.3333333           -0.5466667     1
+[25,]     -9 -2.3333333           -0.2466667    -1
+[26,]    -19 -4.3333333           -0.7466667     0
+[27,]     31  5.6666667            0.6533333     1
+[28,]    -29 -6.3333333           -0.6466667    -1
+[29,]     41  8.6666667            0.8533333     0
+[30,]      1  0.6666667            0.2533333     1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>vector_centrado</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Ventas           Publicidad Satisfaccion_cliente 
+          164.000000            32.333333             8.346667 
+               Marca 
+            2.000000 </code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="apartado-3" class="level3">
@@ -206,6 +269,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Calcula la matriz de covarianzas y la matriz de correlaciones utilizando las formas matriciales vistas en la clase de teoría. A continuación, interpreta los resultados obtenidos para ambas matrices en el contexto del problema.</p>
 <section id="respuesta-2" class="level4">
 <h4 class="anchored" data-anchor-id="respuesta-2">Respuesta</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>matriu_cov<span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>matriu_cor<span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">cor</span>() <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>matriu_cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         Ventas Publicidad Satisfaccion_cliente     Marca
+Ventas               793.793103 153.793103           16.0827586 6.2068966
+Publicidad           153.793103  30.574713            3.1908046 1.3793103
+Satisfaccion_cliente  16.082759   3.190805            0.3611954 0.1379310
+Marca                  6.206897   1.379310            0.1379310 0.6896552</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>matriu_cor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        Ventas Publicidad Satisfaccion_cliente     Marca
+Ventas               1.0000000  0.9871929            0.9498079 0.2652802
+Publicidad           0.9871929  1.0000000            0.9601695 0.3003757
+Satisfaccion_cliente 0.9498079  0.9601695            1.0000000 0.2763598
+Marca                0.2652802  0.3003757            0.2763598 1.0000000</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="apartado-4" class="level3">

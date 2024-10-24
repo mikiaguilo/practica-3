@@ -63,7 +63,8 @@ Ara calcularem la matriu centrada (restant la mitjana de cada columna a cada ele
 ```{r}
 matriu_centrada <- df %>% mutate(across(everything(),~. -mean(.)))%>% as.matrix()
 vector_centrado <- colMeans(df)
-
+matriu_centrada
+vector_centrado
 ```
 
 
@@ -74,6 +75,16 @@ Calcula la matriz de covarianzas y la matriz de correlaciones utilizando las for
 
 #### Respuesta
 
+```{r}
+matriu_cov= matriu_centrada %>% {t(.) %*% . /(nrow(.)-1)}
+matriu_cor= df %>% 
+mutate(across(everything(), ~(.-mean(.))/sd(.))) %>% 
+as.matrix()%>%
+{(t(.) %*% .) / (nrow(.)-1)}
+matriu_cov
+matriu_cor
+
+```
 
 
 ### Apartado 4
@@ -82,6 +93,12 @@ Calcula la matriz de correlaciones muestrales con la forma matricial estudiada e
 
 #### Respuesta
 
+```{r}
+matriu_cov_R= df %>% cov() %>% as.matrix()
+matriu_cor_R= df %>% cor() %>% as.matrix()
+matriu_cov_R
+matriu_cor_R
+```
 
 ### Apartado 5
 
