@@ -132,9 +132,15 @@ Calcula los vectores de medias y las matrices de correlacioes muestrales para ca
 marca_a= df  %>%filter(Marca==1)%>% mutate(across(everything(),mean)) %>% distinct() %>% as.vector()
 marca_b= df  %>%filter(Marca==2)%>% mutate(across(everything(),mean)) %>% distinct() %>% as.vector()
 marca_c= df  %>%filter(Marca==3)%>% mutate(across(everything(),mean)) %>% distinct() %>% as.vector()
+matriu_a= df %>% filter(Marca==1) %>% select(-Marca) %>% cor()
+matriu_b= df %>% filter(Marca==2) %>% select(-Marca) %>% cor()
+matriu_c= df %>% filter(Marca==3) %>% select(-Marca) %>% cor() 
 t(marca_a) 
 t(marca_b)
 t(marca_c)
+matriu_a
+matriu_b
+matriu_c
 ```
 
 
@@ -146,6 +152,20 @@ Utiliza la librería `ggcorrplot` para visualizar las matrices de correlaciones 
 
 ```{r}
 library(ggcorrplot)
-
+ggcorrplot(matriu_a, method = "square", type = "lower", 
+           lab = TRUE, lab_size = 3, 
+           title = "Marca A- Correlació",
+           colors = c("blue", "white", "red"), 
+           ggtheme = theme_minimal())
+ggcorrplot(matriu_b, method = "circle", type = "lower", 
+           lab = TRUE, lab_size = 3, 
+           title = "Marca B- Correlació",
+           colors = c("blue", "white", "red"), 
+           ggtheme = theme_minimal())
+ggcorrplot(matriu_c, method = "circle", type = "lower", 
+           lab = TRUE, lab_size = 3, 
+           title = "Marca C- Correlació",
+           colors = c("blue", "white", "red"), 
+           ggtheme = theme_minimal())
 ```
-
+Podems observar que les dades estan moot correlacionades, existeix una dependència lineal entre elles, sobre tot amb les de marca B. És molt més visual un gràfic amb el mètode "square", ja que és més visual, i amb el "circle", si les correlacions són molt similars, els cercles no mesuren bé la diferència
