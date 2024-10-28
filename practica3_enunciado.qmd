@@ -76,13 +76,13 @@ Calcula la matriz de covarianzas y la matriz de correlaciones utilizando las for
 #### Respuesta
 
 ```{r}
-matriu_cov= matriu_centrada %>% {t(.) %*% . /(nrow(.)-1)}
-matriu_cor= df %>% 
+S= matriu_centrada %>% {t(.) %*% . /(nrow(.)-1)}
+R= df %>% 
 mutate(across(everything(), ~(.-mean(.))/sd(.))) %>% 
 as.matrix()%>%
 {(t(.) %*% .) / (nrow(.)-1)}
-matriu_cov
-matriu_cor
+S
+R
 
 ```
 
@@ -94,10 +94,15 @@ Calcula la matriz de correlaciones muestrales con la forma matricial estudiada e
 #### Respuesta
 
 ```{r}
-matriu_cov_R= df %>% cov() %>% as.matrix()
-matriu_cor_R= df %>% cor() %>% as.matrix()
-matriu_cov_R
-matriu_cor_R
+D=df %>% summarise(across(everything(),sd)) %>% as.matrix()
+I=diag(ncol(D))
+for (i in row_number(I)){
+  I[i,i]=D[i]
+}
+R_classe=solve(I)%*% S %*%solve(I)
+R_classe
+
+
 ```
 
 ### Apartado 5
@@ -105,14 +110,32 @@ matriu_cor_R
 Calcula la varianza generalizada y la variación total del conjunto de datos numéricos que estamos estudiando. Interpreta los resultados obtenidos.
 
 #### Respuesta
+La varianza generalizada es $|S|=\lambda_1 \times \dots \times \lambda_p$
 
+```{r}
+var_gen=S%>% det()
+var_total= S %>% diag()%>% sum()
+var_total
+var_gen
+S%>% diag() %>% prod()
 
+```
+
+La variància generalitzada és una mesura pel volum d'un espai $4$-dimensional, llavors, quan més petita sigui aquesta, les dades estan més concentrades en una regió de l'espai. (Els conjunts de punts $4$-dimensional estiran prou a prop)
 
 ### Apartado 6
 Calcula los vectores de medias y las matrices de correlacioes muestrales para cada marca de productos utilizando  las funciones que están disponibles en `R` y `tidyverse`. Comenta los resultados obtenidos.
 
 #### Respuesta
-e
+
+```{r}
+marca_a= df  %>%filter(Marca==1)%>% mutate(across(everything(),mean)) %>% distinct() %>% as.vector()
+marca_b= df  %>%filter(Marca==2)%>% mutate(across(everything(),mean)) %>% distinct() %>% as.vector()
+marca_c= df  %>%filter(Marca==3)%>% mutate(across(everything(),mean)) %>% distinct() %>% as.vector()
+t(marca_a) 
+t(marca_b)
+t(marca_c)
+```
 
 
 ### Apartado 7
@@ -120,4 +143,9 @@ e
 Utiliza la librería `ggcorrplot` para visualizar las matrices de correlaciones para cada marca de productos mediante mapas de calor que muestren solo las matrices triangulares inferiores. Para la marca A presenta los resultados con  `method = "square"`, para las marca B con  `method = "circle"` y, para la marca C con  `method = "circle"` pero especificando tres cifras decimales. Comenta los resultados obtenidos e indica cuál de los métodos te parece más apropiado para interpretar estos datos.
 
 #### Respuesta
+
+```{r}
+library(ggcorrplot)
+
+```
 
